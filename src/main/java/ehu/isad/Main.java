@@ -2,6 +2,7 @@ package ehu.isad;
 
 import ehu.isad.controllers.Controller;
 import ehu.isad.controllers.InformazioKud;
+import ehu.isad.utils.Sarea;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -91,9 +92,13 @@ public class Main extends Application{
     stage.show();
     return stage.getScene().getRoot();
   }
-  public Parent infoErakutsi(Details xehetasunak, Image irudia) {
+  public Parent infoErakutsi(Details xehetasunak, Image irudia) throws IOException {
     stage.setScene(new Scene(informazioaUI));
     stage.show();
+    if (irudia==null){
+      Sarea s=new Sarea();
+      irudia=s.eman_irudia("https://images.app.goo.gl/BRx4J9yMsMaUtB5UA");
+    }
     informaziokud.informazioa_jarri(xehetasunak,irudia);
     return stage.getScene().getRoot();
   }
