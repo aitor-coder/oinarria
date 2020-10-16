@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="bigarren_leihoa" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ehu.isad.controllers.InformazioKud">
+   <children>
+      <Label layoutX="188.0" layoutY="104.0" text="Izena:" />
+      <Label layoutX="186.0" layoutY="200.0" text="Irudia:" />
+      <Label fx:id="izena_label" layoutX="254.0" layoutY="104.0" text="---------" />
+      <Button fx:id="atzera_button" layoutX="297.0" layoutY="401.0" mnemonicParsing="false" onAction="#bueltatu_hasierara" text="Atzera" />
+      <Label layoutX="127.0" layoutY="28.0" text="Liburuaren Xehetasunak:">
+         <font>
+            <Font size="34.0" />
+         </font>
+      </Label>
+      <Label layoutX="155.0" layoutY="136.0" text="Argitaletxea:" />
+      <Label fx:id="argitaletxea_label" layoutX="254.0" layoutY="136.0" text="---------" />
+      <Label layoutX="127.0" layoutY="167.0" text="Orrialde Kopurua:" />
+      <Label fx:id="orrialde_label" layoutX="254.0" layoutY="167.0" text="---------" />
+      <ImageView fx:id="irudi_taula" fitHeight="150.0" fitWidth="200.0" layoutX="254.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true" />
+   </children>
+</AnchorPane>
