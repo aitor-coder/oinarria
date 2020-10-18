@@ -40,7 +40,7 @@ public class Main extends Application{
   private Controller mainkud;
   private InformazioKud informaziokud;
   private Stage stage;
-
+  private Scene liburuScene;
 
   @Override
   public void start(Stage primaryStage) throws IOException {
@@ -70,9 +70,9 @@ public class Main extends Application{
   }
 
   private void pantailaKargatu() throws IOException {
-    FXMLLoader loaderKautotu = new FXMLLoader(getClass().getResource("/sample.fxml"));
-    mainUI = (Parent) loaderKautotu.load();
-    mainkud = loaderKautotu.getController();
+    FXMLLoader loaderMain = new FXMLLoader(getClass().getResource("/sample.fxml"));
+    mainUI = (Parent) loaderMain.load();
+    mainkud = loaderMain.getController();
     mainkud.setMainApp(this);
 
     FXMLLoader loaderinfo=new FXMLLoader(getClass().getResource("/informazio.fxml"));
@@ -80,25 +80,35 @@ public class Main extends Application{
     informaziokud = loaderinfo.getController();
     informaziokud.setMainApp(this);
 
+
   }
 
   public static void main(String[] args) {
     launch(args);
   }
-
+//  public void mainErakutsi(){
+//      liburuScene=new Scene(mainUI);
+//      stage.setScene(liburuScene);
+//      //stage.setScene(new Scene(mainUI));
+//      stage.show();
+//  }
+//  public void infoErakutsi(Details xehetasunak,Image irudia) throws IOException{
+//      liburuScene=new Scene(informazioaUI);
+//      stage.setScene(liburuScene);
+//      //stage.setScene(new Scene(informazioaUI));
+//      stage.show();
+//      informaziokud.informazioa_jarri(xehetasunak,irudia);
+//  }
 
   public Parent mainErakutsi() {
     stage.setScene(new Scene(mainUI));
     stage.show();
     return stage.getScene().getRoot();
   }
+  
   public Parent infoErakutsi(Details xehetasunak, Image irudia) throws IOException {
     stage.setScene(new Scene(informazioaUI));
     stage.show();
-    if (irudia==null){
-      Sarea s=new Sarea();
-      irudia=s.eman_irudia("https://images.app.goo.gl/BRx4J9yMsMaUtB5UA");
-    }
     informaziokud.informazioa_jarri(xehetasunak,irudia);
     return stage.getScene().getRoot();
   }

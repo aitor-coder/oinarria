@@ -39,12 +39,14 @@ public class Controller implements Initializable {
         Book liburua= (Book) liburu_zerrenda.getValue();
         Sarea s=new Sarea();
         Book liburu_info= s.readFromUrl(liburua.isbn);
-        System.out.println(liburu_info.details.toString());
-        //main_app.infoErakutsi(liburu_info.details);
-        Image irudia=s.eman_irudia(liburu_info.thumbnail_url.replace("-S","-M"));
-        System.out.println(liburu_info.thumbnail_url.replace("-S","-M"));
-        sartu.getScene().setRoot(main_app.infoErakutsi(liburu_info.details,irudia));
 
+        System.out.println(liburu_info.details.toString());
+        System.out.println(liburu_info.thumbnail_url.replace("-S","-M"));
+
+        Image irudia=s.eman_irudia(liburu_info.thumbnail_url.replace("-S","-M"));
+
+        sartu.getScene().setRoot(main_app.infoErakutsi(liburu_info.details,irudia));
+        //main_app.infoErakutsi(liburu_info.details,irudia);
 
     }
 

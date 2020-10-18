@@ -16,21 +16,13 @@ public class InformazioKud {
     private Main main_app;
     public void setMainApp(Main main){
         this.main_app=main;
-
     }
 
     public void informazioa_jarri(Details xehetasunak, Image irudia){
-        if (xehetasunak==null){
-            irudi_taula.setImage(irudia);
-        }
-        else {
-            izena_label.setText(xehetasunak.title);
-            argitaletxea_label.setText(Arrays.toString(xehetasunak.publishers));
-            orrialde_label.setText(xehetasunak.number_of_pages.toString());
-            irudi_taula.setImage(irudia);
-        }
-
-
+        izena_label.setText(xehetasunak.title);
+        argitaletxea_label.setText(Arrays.toString(xehetasunak.publishers));
+        orrialde_label.setText(xehetasunak.number_of_pages.toString());
+        irudi_taula.setImage(irudia);
     }
     @FXML
     private AnchorPane bigarren_leihoa;
