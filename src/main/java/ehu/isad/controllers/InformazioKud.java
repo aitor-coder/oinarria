@@ -42,8 +42,7 @@ public class InformazioKud {
     private ImageView irudi_taula;
     @FXML
     void bueltatu_hasierara(ActionEvent event) {
-        atzera_button.getScene().setRoot(main_app.mainErakutsi());
-        //main_app.mainErakutsi();
+        main_app.mainErakutsi();
 
     }
 

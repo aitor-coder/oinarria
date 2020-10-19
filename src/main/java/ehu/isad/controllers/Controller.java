@@ -45,8 +45,7 @@ public class Controller implements Initializable {
 
         Image irudia=s.eman_irudia(liburu_info.thumbnail_url.replace("-S","-M"));
 
-        sartu.getScene().setRoot(main_app.infoErakutsi(liburu_info.details,irudia));
-        //main_app.infoErakutsi(liburu_info.details,irudia);
+        main_app.infoErakutsi(liburu_info.details,irudia);
 
     }
 

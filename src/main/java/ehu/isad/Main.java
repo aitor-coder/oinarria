@@ -41,6 +41,7 @@ public class Main extends Application{
   private InformazioKud informaziokud;
   private Stage stage;
   private Scene liburuScene;
+  private Scene detailsScene;
 
   @Override
   public void start(Stage primaryStage) throws IOException {
@@ -65,7 +66,7 @@ public class Main extends Application{
     stage=primaryStage;
     this.pantailaKargatu();
     stage.setTitle("Liburuen Informazioa API");
-    stage.setScene(new Scene(mainUI));
+    stage.setScene(liburuScene);
     stage.show();
   }
 
@@ -74,11 +75,13 @@ public class Main extends Application{
     mainUI = (Parent) loaderMain.load();
     mainkud = loaderMain.getController();
     mainkud.setMainApp(this);
+    liburuScene=new Scene(mainUI);
 
     FXMLLoader loaderinfo=new FXMLLoader(getClass().getResource("/informazio.fxml"));
     informazioaUI = (Parent) loaderinfo.load();
     informaziokud = loaderinfo.getController();
     informaziokud.setMainApp(this);
+    detailsScene=new Scene(informazioaUI);
 
 
   }
@@ -86,32 +89,19 @@ public class Main extends Application{
   public static void main(String[] args) {
     launch(args);
   }
-//  public void mainErakutsi(){
-//      liburuScene=new Scene(mainUI);
-//      stage.setScene(liburuScene);
-//      //stage.setScene(new Scene(mainUI));
-//      stage.show();
-//  }
-//  public void infoErakutsi(Details xehetasunak,Image irudia) throws IOException{
-//      liburuScene=new Scene(informazioaUI);
-//      stage.setScene(liburuScene);
-//      //stage.setScene(new Scene(informazioaUI));
-//      stage.show();
-//      informaziokud.informazioa_jarri(xehetasunak,irudia);
-//  }
+  public void mainErakutsi(){
+      stage.setScene(liburuScene);
+      //stage.setScene(new Scene(mainUI));
+      stage.show();
+  }
+  public void infoErakutsi(Details xehetasunak,Image irudia) throws IOException{
+      stage.setScene(detailsScene);
+      //stage.setScene(new Scene(informazioaUI));
+      stage.show();
+      informaziokud.informazioa_jarri(xehetasunak,irudia);
+  }
 
-  public Parent mainErakutsi() {
-    stage.setScene(new Scene(mainUI));
-    stage.show();
-    return stage.getScene().getRoot();
-  }
-  
-  public Parent infoErakutsi(Details xehetasunak, Image irudia) throws IOException {
-    stage.setScene(new Scene(informazioaUI));
-    stage.show();
-    informaziokud.informazioa_jarri(xehetasunak,irudia);
-    return stage.getScene().getRoot();
-  }
+
 
 }
 //https://openlibrary.org/api/books?bibkeys=ISBN:1491910399&jscmd=details&format=json"
