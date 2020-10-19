@@ -7,13 +7,14 @@ public class Book {
     String info_url;
     String bib_key;
     String preview_url;
-    public String thumbnail_url;
-    public Details details;
+    String thumbnail_url;
+    Details details;
 
     public Book(String isbn, String title) {
         this.isbn = isbn;
         this.title = title;
     }
+
 
     @Override
     public String toString() {
@@ -27,5 +28,43 @@ public class Book {
                 ", details=" + details +
                 '}';
     }
+    public String getInfo_url() {
+        return info_url;
+    }
 
+    public String getBib_key() {
+        return bib_key;
+    }
+
+    public String getPreview_url() {
+        return preview_url;
+    }
+
+    public String getThumbnail_url() {
+        return thumbnail_url;
+    }
+
+    public Details getDetails() {
+        return details;
+    }
+
+    public void setInfo_url(String info_url) {
+        this.info_url = info_url;
+    }
+
+    public void setBib_key(String bib_key) {
+        this.bib_key = bib_key;
+    }
+
+    public void setPreview_url(String preview_url) {
+        this.preview_url = preview_url;
+    }
+
+    public void setThumbnail_url(String thumbnail_url) {
+        this.thumbnail_url = thumbnail_url;
+    }
+
+    public void setDetails(Details details) {
+        this.details = details;
+    }
 }

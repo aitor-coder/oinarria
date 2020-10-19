@@ -6,11 +6,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="leiho_nagusia" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ehu.isad.controllers.Controller">
+<AnchorPane fx:id="leiho_nagusia" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" style="-fx-background-color: White;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ehu.isad.controllers.Controller">
    <children>
-      <ComboBox fx:id="liburu_zerrenda" layoutX="212.0" layoutY="162.0" prefWidth="150.0" />
-      <Button fx:id="sartu" layoutX="252.0" layoutY="239.0" mnemonicParsing="false" onAction="#begiratu_informazioa" prefHeight="35.0" prefWidth="71.0" text="Sartu" />
-         <Label layoutX="96.0" layoutY="28.0" text="Liburuaren Aukeraketa:">
+      <ComboBox fx:id="liburu_zerrenda" layoutX="155.0" layoutY="206.0" prefHeight="44.0" prefWidth="290.0" />
+      <Button fx:id="sartu" layoutX="253.0" layoutY="404.0" mnemonicParsing="false" onAction="#begiratu_informazioa" prefHeight="44.0" prefWidth="95.0" style="-fx-background-color: Blue;" text="Sartu" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Button>
+         <Label layoutX="107.0" layoutY="27.0" text="Liburuaren Aukeraketa:" underline="true">
             <font>
                <Font name="Batang" size="34.0" />
             </font>
