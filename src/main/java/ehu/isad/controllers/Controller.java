@@ -29,10 +29,9 @@ public class Controller implements Initializable {
     private AnchorPane leiho_nagusia;
     @FXML
     private ComboBox liburu_zerrenda;
-
-
     @FXML
     private Button sartu;
+
 
     @FXML
     void begiratu_informazioa(ActionEvent event) throws IOException {

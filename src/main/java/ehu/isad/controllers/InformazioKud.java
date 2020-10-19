@@ -20,7 +20,12 @@ public class InformazioKud {
 
     public void informazioa_jarri(Details xehetasunak, Image irudia){
         izena_label.setText(xehetasunak.title);
-        argitaletxea_label.setText(Arrays.toString(xehetasunak.publishers));
+        String lehenengo=xehetasunak.publishers[0];
+        for (int i=1;i>xehetasunak.publishers.length;i++){
+            lehenengo +=","+xehetasunak.publishers[i];
+        }
+        //argitaletxea_label.setText(Arrays.toString(xehetasunak.publishers));
+        argitaletxea_label.setText(lehenengo);
         orrialde_label.setText(xehetasunak.number_of_pages.toString());
         irudi_taula.setImage(irudia);
     }
