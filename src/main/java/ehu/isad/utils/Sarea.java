@@ -9,11 +9,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Properties;
 
 public class Sarea {
+    Properties properties = Utils.lortuEzarpenak();
     public Book readFromUrl(String isbn) throws IOException {
         URL openlibrary = new URL("https://openlibrary.org/api/books?bibkeys=ISBN:"+isbn+"&jscmd=details&format=json");
         URLConnection yc = openlibrary.openConnection();
@@ -38,4 +39,6 @@ public class Sarea {
             return new Image(stream);
         }
     }
+
+    
 }

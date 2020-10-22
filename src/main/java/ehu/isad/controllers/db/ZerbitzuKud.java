@@ -2,11 +2,15 @@ package ehu.isad.controllers.db;
 
 import ehu.isad.Book;
 import ehu.isad.Details;
+import ehu.isad.utils.Utils;
+import javafx.scene.image.Image;
 
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 public class ZerbitzuKud {
 
@@ -16,6 +20,7 @@ public class ZerbitzuKud {
         return instance;
     }
 
+    Properties properties = Utils.lortuEzarpenak();
     private ZerbitzuKud() {
     }
 
@@ -84,15 +89,23 @@ public class ZerbitzuKud {
 //        ResultSet rs=dbKudeatzaile.execSQL(sententzia);
 //
 //    }
-    public void gorde_liburua(Book liburu_oinarri, Book liburua_info,String irudia){
+    public void gorde_liburua(Book liburu_oinarri, Book liburua_info, String irudia, Image irudia_fitx) throws IOException {
         String argitaletxea=liburua_info.getDetails().getPublishers()[0];
         for(int i=0;i>liburua_info.getDetails().getPublishers().length;i++){
             argitaletxea +=", "+liburua_info.getDetails().getPublishers()[i];
         }
+        String irudi_path=irudia.split("/")[irudia.split("/").length-1];
+
+        System.out.println(irudi_path);
+        System.out.println(properties.getProperty("imagePath")+"/"+irudi_path);
+
+
+        System.out.println(irudi_path);
         System.out.println(argitaletxea);
         argitaletxea=argitaletxea.replace("'","\\'");
         System.out.println(argitaletxea);
         String sententzia="update liburua set `izen_osoa`='"+liburua_info.getDetails().getTitle()+"', `info_url`='"+liburua_info.getInfo_url()+"', `bib_key`='"+liburua_info.getBib_key()+"', `preview_url`='"+liburua_info.getPreview_url()+"', `thumbnail_url`='"+liburua_info.getThumbnail_url()+"', `argitaletxeak`='"+argitaletxea+"', `orriak`='"+liburua_info.getDetails().getNumber_of_pages()+"', `osatuta`='0' WHERE `isbn`='"+ liburu_oinarri.isbn+"';";
+//        String sententzia="update liburua set `izen_osoa`='"+liburua_info.getDetails().getTitle()+"', `info_url`='"+liburua_info.getInfo_url()+"', `bib_key`='"+liburua_info.getBib_key()+"', `preview_url`='"+liburua_info.getPreview_url()+"', `thumbnail_url`='"+liburua_info.getThumbnail_url()+"', `argitaletxeak`='"+argitaletxea+"', `orriak`='"+liburua_info.getDetails().getNumber_of_pages()+"', `osatuta`='0', irudia='"+irudi_path+"' WHERE `isbn`='"+ liburu_oinarri.isbn+"';";
         DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
         ResultSet rs = dbKudeatzaile.execSQL(sententzia);
 
