@@ -4,24 +4,19 @@ import ehu.isad.Book;
 import ehu.isad.Main;
 import ehu.isad.controllers.db.ZerbitzuKud;
 import ehu.isad.utils.Sarea;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.StringConverter;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
@@ -51,7 +46,8 @@ public class Controller implements Initializable {
         Image irudia;
         if(b!=null){
             System.out.println(b.getThumbnail_url());
-            irudia=s.eman_irudia(b.getThumbnail_url().replace("-S","-M"));
+            irudia=s.irudia_ireki(zk.dbs_irudia_eman(b.isbn));
+            //irudia=s.eman_irudia(b.getThumbnail_url().replace("-S","-M"));
 
             liburu_info=b;
             //b.getDetails().setTitle(liburua.);

@@ -3,12 +3,12 @@ package ehu.isad.utils;
 import com.google.gson.Gson;
 import ehu.isad.Book;
 import ehu.isad.Details;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Properties;
@@ -40,5 +40,23 @@ public class Sarea {
         }
     }
 
+    public Image irudia_ireki(String Izena) throws IOException {
+        String irudi_karpeta=properties.getProperty("imagePath");
+        String irudi_bidea=irudi_karpeta+"/"+Izena;
+        File irudia=new File(irudi_bidea);
+        BufferedImage img=null;
+        img= ImageIO.read(irudia);
+        return SwingFXUtils.toFXImage(img,null);
+    }
+
+    public void irudia_gorde(Image irudia,String izena) throws IOException {
+        String bidea=properties.getProperty("imagePath");
+        String bide_osoa=bidea+"/"+izena;
+        System.out.println(bide_osoa);
+        File fitxategia=new File(bide_osoa);
+        ImageIO.write(SwingFXUtils.fromFXImage(irudia,null),"jpg",fitxategia);
+        System.out.println("IRUDIA SORTU DA.");
+
+    }
     
 }
