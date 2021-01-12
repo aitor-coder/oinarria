@@ -1,0 +1,21 @@
+.button
+{
+    -fx-background-color : #ff7100;
+    -fx-text-fill: #FFFFFF;
+    -fx-background-radius: 0
+}
+.button:hover{
+    -fx-cursor: hand;
+    -fx-background-color: #ff9147;
+}
+#web{
+    -fx-max-width: 100%;
+
+    -fx-text-fill: #FFFFFF;
+}
+#garbitu{
+    -fx-background-color: rgb(3, 252, 215);
+}
+#eskaner{
+    -fx-background-color: rgb(52, 129, 12);
+}

@@ -1,76 +1,107 @@
 package ehu.isad.controllers.db;
-
-import ehu.isad.utils.Utils;
-
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.sql.*;
+import java.io.InputStream;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Connection;
+import java.sql.Statement;
 import java.util.Properties;
+
 
 public class DBKudeatzaile {
 
-	Connection conn = null;
+    Connection conn = null;
 
-	private void conOpen() {
+    private void conOpen(String dbpath) {
+        try {
+            String url = "jdbc:sqlite:" + dbpath;
+            conn = DriverManager.getConnection(url);
 
-		Properties properties = Utils.lortuEzarpenak();
+            System.out.println("Database connection established");
+        } catch (Exception e) {
+            System.err.println("Cannot connect to database server " + e);
+        }
+    }
 
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver").getConstructor().newInstance();
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/", properties);
-			conn.setCatalog(properties.getProperty("dbname"));
 
-		} catch (SQLException ex) {
-			// handle any errors
-			System.out.println("SQLException: " + ex.getMessage());
-			System.out.println("SQLState: " + ex.getSQLState());
-			System.out.println("VendorError: " + ex.getErrorCode());
-		} catch (ClassNotFoundException | InvocationTargetException | IllegalAccessException | InstantiationException | NoSuchMethodException e) {
-			e.printStackTrace();
-		}
-	}
+    private void conClose() {
 
-	private ResultSet query(Statement s, String query) {
+        if (conn != null)
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
 
-		ResultSet rs = null;
+        System.out.println("Database connection terminated");
 
-		try {
-			s.executeQuery(query);
-			rs = s.getResultSet();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+    }
 
-		return rs;
-	}
+    private ResultSet query(Statement s, String query) {
 
-	// singleton patroia
-	private static DBKudeatzaile instantzia = new DBKudeatzaile();
+        ResultSet rs = null;
 
-	private DBKudeatzaile() {
-		this.conOpen();
-	}
+        try {
+            rs = s.executeQuery(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-	public static DBKudeatzaile getInstantzia() {
-		return instantzia;
-	}
+        return rs;
+    }
 
-	public ResultSet execSQL(String query) {
-		int count = 0;
-		Statement s = null;
-		ResultSet rs = null;
-		try {
-			s = (Statement) conn.createStatement();
-			if (query.toLowerCase().indexOf("select") == 0) {
-				// select agindu bat
-				rs = this.query(s, query);
-			} else {
-				// update, delete, create agindu bat
-				count = s.executeUpdate(query);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return rs;
-	}
+    // singleton patroia
+    private static DBKudeatzaile instantzia = new DBKudeatzaile();
+
+    private DBKudeatzaile() {
+
+        Properties properties = null;
+        InputStream in = null;
+
+        try {
+            in = this.getClass().getResourceAsStream("/setup.properties");
+            properties = new Properties();
+            properties.load(in);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                in.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        this.conOpen(properties.getProperty("dbpath"));
+
+    }
+
+    public static DBKudeatzaile getInstantzia() {
+        return instantzia;
+    }
+
+    public ResultSet execSQL(String query) {
+        int count = 0;
+        Statement s = null;
+        ResultSet rs = null;
+
+        try {
+            s = (Statement) conn.createStatement();
+            if (query.toLowerCase().indexOf("select") == 0) {
+                // select agindu bat
+                rs = this.query(s, query);
+
+            } else {
+                // update, delete, create agindu bat
+                count = s.executeUpdate(query);
+                System.out.println(count + " rows affected");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return rs;
+    }
 }
