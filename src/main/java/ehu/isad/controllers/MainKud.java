@@ -50,6 +50,7 @@ public class MainKud implements Initializable {
 
     @FXML
     void bilaketa_egin(ActionEvent event) {
+        String url=txt_url.getText();
 
     }
     private ObservableList<URLModel> url_zerrenda= FXCollections.observableArrayList();

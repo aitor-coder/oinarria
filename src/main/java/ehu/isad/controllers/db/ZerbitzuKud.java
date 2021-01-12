@@ -81,12 +81,12 @@ public class ZerbitzuKud {
         List<URLModel> url_ak = new ArrayList<>();
         try {
             while (rs.next()) {
-
+                String url =rs.getString("url");
                 String bertsioa = rs.getString("version");
                 String md5 = rs.getString("md5");
                 String path=rs.getString("path");
 
-                URLModel u1= new URLModel("",md5,bertsioa,path);
+                URLModel u1= new URLModel(url,md5,bertsioa,path);
                 System.out.println(u1.toString());
                 url_ak.add(u1);
             }
